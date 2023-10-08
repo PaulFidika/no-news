@@ -37,7 +37,7 @@ const UrlInput: React.FC<UrlInputProps> = ({ setUrls }) => {
       setUrls(updatedUrls);
     }
   };
-  
+
   // Handler for removing a URL from the list
   const handleRemove = (index: number) => {
     // Filter out the URL that needs to be removed

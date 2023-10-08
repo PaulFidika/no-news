@@ -5,6 +5,7 @@ import * as AWS from 'aws-sdk';
 import { InvokeModelRequest } from 'aws-sdk/clients/bedrockruntime';
 import Mercury from '@postlight/mercury-parser';
 import { parse } from 'path';
+import { map } from 'lodash';
 
 type ResponseBody = {
   completion: string;

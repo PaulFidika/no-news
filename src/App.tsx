@@ -61,7 +61,18 @@ const App: React.FC = () => {
         <Grid container spacing={isMobile ? 0 : 3}>
           <Grid item xs={12}>
             <Typography variant="body1" component="p" gutterBottom>
-              {/* Your introductory text here */}
+              The president gets a daily morning briefing; why shouldn't you?
+              Just:
+              <ul>
+                <li> specify news sources you want to keep an eye on </li>{' '}
+                <li> specify what's interesting to you </li>{' '}
+                <li>
+                  {' '}
+                  And we'll summarize everything you need to know concisely.{' '}
+                </li>{' '}
+              </ul>{' '}
+              We aim to provide concise, unbiased, relevant information for you
+              every day.
             </Typography>
           </Grid>
           <Grid item xs={12} md={6}>

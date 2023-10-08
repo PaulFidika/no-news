@@ -20,7 +20,7 @@ const UrlInput: React.FC<UrlInputProps> = ({ setUrls }) => {
   };
 
   const handleAdd = () => {
-    if (isValid) {
+    if (isValid && urls.length < 5) {
       setInternalUrls((prev) => [...prev, newUrl]);
       setNewUrl('');
       setUrls(urls);
@@ -52,20 +52,23 @@ const UrlInput: React.FC<UrlInputProps> = ({ setUrls }) => {
           </IconButton>
         </div>
       ))}
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <TextField
-          label="URL"
-          variant="outlined"
-          value={newUrl}
-          onChange={handleChange}
-          error={!isValid}
-          helperText={!isValid && 'Please enter a valid URL'}
-          style={{ flex: 1, marginRight: '8px' }} // Added margin for spacing
-        />
-        <Button onClick={handleAdd} variant="contained" color="primary">
-          Add URL
-        </Button>
-      </div>
+
+      {urls.length < 5 && (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <TextField
+            label="URL"
+            variant="outlined"
+            value={newUrl}
+            onChange={handleChange}
+            error={!isValid}
+            helperText={!isValid && 'Please enter a valid URL'}
+            style={{ flex: 1, marginRight: '8px' }}
+          />
+          <Button onClick={handleAdd} variant="contained" color="primary">
+            Add URL
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

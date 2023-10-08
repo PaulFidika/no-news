@@ -7,7 +7,7 @@ interface QueryInputProps {
 
 const QueryInput: React.FC<QueryInputProps> = ({ setQuery }) => (
   <TextField
-    id="outlined-textarea"
+    id="query-input"
     label="Query"
     placeholder="AI news and Meta Quest"
     multiline

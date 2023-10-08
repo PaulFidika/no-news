@@ -109,7 +109,7 @@ const Home: React.FC<AppProps> = ({ Component, pageProps }) => {
             <Paper
               style={{
                 padding: theme.spacing(2),
-                backgroundColor: '#5e4e5e',
+                backgroundColor: '#3a4047',
                 borderRadius: '8px',
               }}
             >
@@ -123,7 +123,7 @@ const Home: React.FC<AppProps> = ({ Component, pageProps }) => {
             <Paper
               style={{
                 padding: theme.spacing(2),
-                backgroundColor: '#5e4e5e',
+                backgroundColor: '#3a4047',
                 borderRadius: '8px',
               }}
             >

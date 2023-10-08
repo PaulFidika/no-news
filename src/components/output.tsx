@@ -3,12 +3,12 @@ import CircularProgress from '@mui/material/CircularProgress';
 
 interface OutputWindowProps {
   isLoading: boolean;
-  data: string;
+  output: string;
 }
 
-const OutputWindow: React.FC<OutputWindowProps> = ({ isLoading, data }) => (
+const OutputWindow: React.FC<OutputWindowProps> = ({ isLoading, output }) => (
   <div>
-    {isLoading ? <CircularProgress /> : <p>{data}</p>}
+    {isLoading ? <CircularProgress /> : <p>{output}</p>}
   </div>
 );
 

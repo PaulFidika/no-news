@@ -1,22 +1,21 @@
 import React, { useState } from 'react';
 import Header from './components/header';
 import UrlInput from './components/urlInput';
-import InterestInput from './components/interestInput';
+import QueryInput from './components/queryInput';
 import OutputWindow from './components/output';
 import Button from '@mui/material/Button';
 
 const App: React.FC = () => {
   const [urls, setUrls] = useState<string[]>([]);
-  const [interests, setInterests] = useState<string>('');
+  const [query, setQuery] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [data, setData] = useState<string>('');
+  const [output, setOutput] = useState<string>('');
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    // Do your API call here and setData
-    // For example, adjust to your actual API call:
-    // const response = await fetch('your-api-endpoint', { method: 'POST', body: JSON.stringify({ urls, interests }) });
-    // setData(await response.json());
+    // Do your API call here and setOutput
+    // const response = await fetch('your-api-endpoint', { method: 'POST', body: JSON.stringify({ urls, query }) });
+    // setOutput(await response.json());
     setIsLoading(false);
   };
 
@@ -25,9 +24,9 @@ const App: React.FC = () => {
       <Header />
       <p>Enter your URLs to summarize here:</p>
       <UrlInput setUrls={setUrls} />
-      <InterestInput setInterests={setInterests} />
+      <QueryInput setQuery={setQuery} />
       <Button onClick={handleSubmit} variant="contained" color="primary">Submit</Button>
-      <OutputWindow isLoading={isLoading} data={data} />
+      <OutputWindow isLoading={isLoading} output={output} />
     </div>
   );
 };

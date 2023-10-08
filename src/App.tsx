@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Header from './components/header';
+import UrlInput from './components/urlInput';
+import InterestInput from './components/interestInput';
+import OutputWindow from './components/output';
+import Button from '@mui/material/Button';
 
-function App() {
+const App: React.FC = () => {
+  const [urls, setUrls] = useState<string[]>([]);
+  const [interests, setInterests] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [data, setData] = useState<string>('');
+
+  const handleSubmit = async () => {
+    setIsLoading(true);
+    // Do your API call here and setData
+    // For example, adjust to your actual API call:
+    // const response = await fetch('your-api-endpoint', { method: 'POST', body: JSON.stringify({ urls, interests }) });
+    // setData(await response.json());
+    setIsLoading(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <p>Enter your URLs to summarize here:</p>
+      <UrlInput setUrls={setUrls} />
+      <InterestInput setInterests={setInterests} />
+      <Button onClick={handleSubmit} variant="contained" color="primary">Submit</Button>
+      <OutputWindow isLoading={isLoading} data={data} />
     </div>
   );
-}
+};
 
 export default App;

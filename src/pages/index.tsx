@@ -62,23 +62,30 @@ const Home: React.FC<AppProps> = ({ Component, pageProps }) => {
       //   },
       // );
 
+      // const whatever = parseResponse(response);
+      // console.log('[Whatever]', whatever);
+
       if (response.ok) {
-        const responseData = await response.json();
-        const { contentType, body } = responseData;
+        console.log('[response]', response);
+        const final = await response.text();
+        console.log(final);
+        setOutput(final);
+        // const responseData = await response.json();
+        // const { contentType, body } = responseData;
 
-        if (
-          contentType === 'application/json' &&
-          body &&
-          body.data &&
-          Array.isArray(body.data)
-        ) {
-          const jsonString = String.fromCharCode.apply(null, body.data);
-          const data = JSON.parse(jsonString);
+        // if (
+        //   contentType === 'application/json' &&
+        //   body &&
+        //   body.data &&
+        //   Array.isArray(body.data)
+        // ) {
+        //   const jsonString = String.fromCharCode.apply(null, body.data);
+        //   const data = JSON.parse(jsonString);
 
-          setOutput(data.completion as string);
-        } else {
-          console.error('Unexpected response format:', responseData);
-        }
+        //   setOutput(data.completion as string);
+        // } else {
+        //   console.error('Unexpected response format:', responseData);
+        // }
       } else {
         console.error('Server response was not ok', response.statusText);
       }

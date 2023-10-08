@@ -37,22 +37,23 @@ const App: React.FC = () => {
       >
         <Grid container direction="column" alignItems="center" spacing={3}>
           <Grid item xs={12}>
-            <Typography variant="h6" component="p" gutterBottom>
+            <Typography variant="body1" component="p" gutterBottom>
               The president gets a daily morning briefing; why shouldn't you?
-              Just: - specify news sources you want to keep an eye on - specify
-              what's interesting to you, and (3) we'll summarize everything you
-              need to know concisely. We aim to provide concise, unbiased,
+              Just:
+              <ul><li> specify news sources you want to keep an eye on </li> <li> specify
+              what's interesting to you </li> <li> And we'll summarize everything you
+              need to know concisely. </li> </ul> We aim to provide concise, unbiased,
               relevant information for you every day.
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" component="p" gutterBottom>
+            <Typography variant="body2" component="p" gutterBottom>
               What news sites do you want to pull from?
             </Typography>
             <UrlInput setUrls={setUrls} />
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="h6" component="p" gutterBottom>
+            <Typography variant="body2" component="p" gutterBottom>
               What's relevant to you personally?
             </Typography>
             <QueryInput setQuery={setQuery} />

@@ -13,6 +13,7 @@ const QueryInput: React.FC<QueryInputProps> = ({ setQuery }) => (
     multiline
     fullWidth
     maxRows={7}
+    onChange={(e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
   />
 );
 

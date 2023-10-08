@@ -31,11 +31,17 @@ async function handler(req: ExtendedNextApiRequest, res: NextApiResponse) {
     const params: InvokeModelRequest = {
       accept: 'application/json',
       body: JSON.stringify({
-        prompt: `Human: ${query} \n\nAssistant:`,
-        max_tokens_to_sample: 50,
+        prompt: `\n\nHuman: ${query}\n\nAssistant:`,
+        "max_tokens_to_sample": 600,
+        "temperature": 0.5,
+        "top_k": 250,
+        "top_p": 1,
+        "stop_sequences": [
+          "\\n\\nHuman:"
+        ],
       }),
       contentType: 'application/json',
-      modelId: 'anthropic.claude-v2',
+      modelId: 'anthropic.claude-instant-v1',
     };
 
     // Invoke the model and get the result

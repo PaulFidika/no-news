@@ -1,8 +1,8 @@
-import { VercelRequest, VercelResponse } from '@vercel/node';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import * as AWS from 'aws-sdk';
 import { InvokeModelRequest } from 'aws-sdk/clients/bedrockruntime';
 
-interface ExtendedNextApiRequest extends VercelRequest {
+interface ExtendedNextApiRequest extends NextApiRequest {
   body: {
     urls: string[];
     query: string;
@@ -18,7 +18,7 @@ AWS.config.update({
 
 const bedrock = new AWS.BedrockRuntime();
 
-async function handler(req: ExtendedNextApiRequest, res: VercelResponse) {
+async function handler(req: ExtendedNextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST') {
     res.status(405).json({ errorMessage: 'Only POST requests are allowed.' });
     return;

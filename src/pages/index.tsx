@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import Header from './components/header';
-import UrlInput from './components/urlInput';
-import QueryInput from './components/queryInput';
-import OutputWindow from './components/output';
+import type { AppProps } from 'next/app';
+import Header from '@/src/components/header';
+import UrlInput from '@/src/components/urlInput';
+import QueryInput from '@/src/components/queryInput';
+import OutputWindow from '@/src/components/output';
 import Button from '@mui/material/Button';
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-import theme from './theme';
+import theme from '@/src/styles/theme';
+import { API_Routes } from '@/src/constants';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import { API_Routes } from './constants';
 
-const App: React.FC = () => {
+const Home: React.FC<AppProps> = ({ Component, pageProps }) => {
   const [urls, setUrls] = useState<string[]>([]);
   const [query, setQuery] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -50,8 +51,26 @@ const App: React.FC = () => {
       //   },
       // );
 
-      const data = (await response.json()) as string;
-      setOutput(data);
+      if (response.ok) {
+        const responseData = await response.json();
+        const { contentType, body } = responseData;
+
+        if (
+          contentType === 'application/json' &&
+          body &&
+          body.data &&
+          Array.isArray(body.data)
+        ) {
+          const jsonString = String.fromCharCode.apply(null, body.data);
+          const data = JSON.parse(jsonString);
+
+          setOutput(data.completion as string);
+        } else {
+          console.error('Unexpected response format:', responseData);
+        }
+      } else {
+        console.error('Server response was not ok', response.statusText);
+      }
     } catch (error: unknown) {
       console.error(error);
     }
@@ -70,15 +89,16 @@ const App: React.FC = () => {
       >
         <Grid container spacing={isMobile ? 0 : 3}>
           <Grid item xs={12}>
-            <Typography variant="body1" component="p" gutterBottom>
-              The president gets a daily morning briefing; why shouldn't you?
-              Just:
+            <Typography variant="body1" component="div" gutterBottom>
+              The president gets a daily morning briefing; why shouldn&apos;t
+              you? Just:
               <ul>
                 <li> specify news sources you want to keep an eye on </li>{' '}
-                <li> specify what's interesting to you </li>{' '}
+                <li> specify what&apos;s interesting to you </li>{' '}
                 <li>
                   {' '}
-                  And we'll summarize everything you need to know concisely.{' '}
+                  And we&apos;ll summarize everything you need to know
+                  concisely.{' '}
                 </li>{' '}
               </ul>{' '}
               We aim to provide concise, unbiased, relevant information for you
@@ -108,7 +128,7 @@ const App: React.FC = () => {
               }}
             >
               <Typography variant="body2" component="p" gutterBottom>
-                What's relevant to you personally?
+                What&apos;s relevant to you personally?
               </Typography>
               <QueryInput setQuery={setQuery} />
             </Paper>
@@ -133,4 +153,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default Home;

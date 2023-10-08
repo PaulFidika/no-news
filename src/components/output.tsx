@@ -1,5 +1,6 @@
 import React from 'react';
 import CircularProgress from '@mui/material/CircularProgress';
+import ReactMarkdown from 'react-markdown';
 
 interface OutputWindowProps {
   isLoading: boolean;
@@ -7,7 +8,15 @@ interface OutputWindowProps {
 }
 
 const OutputWindow: React.FC<OutputWindowProps> = ({ isLoading, output }) => (
-  <div>{isLoading ? <CircularProgress /> : <p>{output}</p>}</div>
+  <div>
+    {isLoading ? (
+      <CircularProgress />
+    ) : (
+      <p>
+        <ReactMarkdown>{output}</ReactMarkdown>
+      </p>
+    )}
+  </div>
 );
 
 export default OutputWindow;

@@ -9,7 +9,7 @@ const QueryInput: React.FC<QueryInputProps> = ({ setQuery }) => (
   <TextField
     id="outlined-textarea"
     label="Query"
-    placeholder="AI news, Meta Quest, and military drones"
+    placeholder="AI news and Meta Quest"
     multiline
     fullWidth
     maxRows={7}

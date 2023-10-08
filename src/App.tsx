@@ -23,10 +23,27 @@ const App: React.FC = () => {
 
   const handleSubmit = async () => {
     setIsLoading(true);
-    // Do your API call here and setOutput
-    // const response = await fetch('your-api-endpoint', { method: 'POST', body: JSON.stringify({ urls, query }) });
-    // setOutput(await response.json());
-    setOutput('Your output will appear here.');
+
+    // AWS API Gateway endpoint call
+    try {
+      const response = await fetch(
+        'https://your-api-id.execute-api.your-region.amazonaws.com/your-stage/your-resource',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            key1: 'value1',
+            key2: 'value2',
+          }),
+        },
+      );
+      const data = (await response.json()) as string;
+      setOutput(data);
+    } catch (error) {
+      console.error(error);
+    }
     setIsLoading(false);
   };
 

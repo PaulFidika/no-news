@@ -10,31 +10,44 @@ interface UrlInputProps {
 }
 
 const UrlInput: React.FC<UrlInputProps> = ({ setUrls }) => {
+  // State for the current list of URLs
   const [urls, setInternalUrls] = useState<string[]>([]);
+  // State for the new URL input
   const [newUrl, setNewUrl] = useState<string>('');
+  // State to track if the input URL is valid
   const [isValid, setIsValid] = useState<boolean>(true);
 
+  // Handler for when the new URL input changes
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setNewUrl(e.target.value);
+    // Check if URL is valid and update the isValid state accordingly
     setIsValid(isValidUrl(e.target.value));
   };
 
+  // Handler for adding a new URL to the list
   const handleAdd = () => {
-    if (isValid) {
+    // Check if the URL is valid and total URLs are less than 5 before adding
+    if (isValid && urls.length < 5) {
       setInternalUrls((prev) => [...prev, newUrl]);
+      // Reset the new URL input after adding
       setNewUrl('');
+      // Update the parent component's URLs state
       setUrls(urls);
     }
   };
 
+  // Handler for removing a URL from the list
   const handleRemove = (index: number) => {
+    // Filter out the URL that needs to be removed
     const newUrls = urls.filter((_, idx) => idx !== index);
     setInternalUrls(newUrls);
+    // Update the parent component's URLs state
     setUrls(newUrls);
   };
 
   return (
     <div>
+      {/* Map through the list of URLs and display them */}
       {urls.map((url, index) => (
         <div
           key={index}
@@ -47,25 +60,31 @@ const UrlInput: React.FC<UrlInputProps> = ({ setUrls }) => {
             disabled
             style={{ flex: 1 }}
           />
+          {/* Button to remove a URL */}
           <IconButton onClick={() => handleRemove(index)} color="error">
             <CloseIcon />
           </IconButton>
         </div>
       ))}
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <TextField
-          label="URL"
-          variant="outlined"
-          value={newUrl}
-          onChange={handleChange}
-          error={!isValid}
-          helperText={!isValid && 'Please enter a valid URL'}
-          style={{ flex: 1, marginRight: '8px' }} // Added margin for spacing
-        />
-        <Button onClick={handleAdd} variant="contained" color="primary">
-          Add URL
-        </Button>
-      </div>
+
+      {/* Only display the new URL input and add button if total URLs are less than 5 */}
+      {urls.length < 5 && (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <TextField
+            label="URL"
+            variant="outlined"
+            value={newUrl}
+            onChange={handleChange}
+            error={!isValid}
+            helperText={!isValid && 'Please enter a valid URL'}
+            style={{ flex: 1, marginRight: '8px' }}
+          />
+          {/* Button to add a new URL */}
+          <Button onClick={handleAdd} variant="contained" color="primary">
+            Add URL
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

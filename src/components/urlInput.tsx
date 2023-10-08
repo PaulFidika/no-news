@@ -71,29 +71,29 @@ const UrlInput: React.FC<UrlInputProps> = ({ setUrls }) => {
       {/* Only display the new URL input and add button if total URLs are less than 5 */}
       {urls.length < 5 && (
         <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          handleAdd();
-        }}
-        style={{ display: 'flex', alignItems: 'center' }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-        <TextField
-          label="URL"
-          variant="outlined"
-          value={newUrl}
-          onChange={handleChange}
-          error={!isValid}
-          placeholder={newUrl === '' ? "techcrunch.com" : undefined}
-          helperText={!isValid && 'Please enter a valid URL'}
-          style={{ flex: 1, marginRight: '8px' }}
-        />
-        {/* Button to add a new URL */}
-        <Button onClick={handleAdd} variant="contained" color="primary">
-          Add URL
-        </Button>
-      </div>
-      </form>
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleAdd();
+          }}
+          style={{ display: 'flex', alignItems: 'center' }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <TextField
+              label="URL"
+              variant="outlined"
+              value={newUrl}
+              onChange={handleChange}
+              error={!isValid}
+              placeholder={newUrl === '' ? 'techcrunch.com' : undefined}
+              helperText={!isValid && 'Please enter a valid URL'}
+              style={{ flex: 1, marginRight: '8px' }}
+            />
+            {/* Button to add a new URL */}
+            <Button onClick={handleAdd} variant="contained" color="primary">
+              Add URL
+            </Button>
+          </div>
+        </form>
       )}
     </div>
   );

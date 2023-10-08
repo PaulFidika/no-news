@@ -84,10 +84,15 @@ const Home: React.FC<AppProps> = ({ Component, pageProps }) => {
       <Header />
       <Container
         component="main"
-        maxWidth={false}
-        style={{ width: '800px', margin: 'auto' }}
+        maxWidth="lg"
+        sx={{
+          padding: isMobile ? '0px' : theme.spacing(2),
+          marginLeft: isMobile ? theme.spacing(2) : 'auto', // Adjusted margin left for mobile
+          marginRight: isMobile ? theme.spacing(2) : 'auto', // Adjusted margin right for mobile
+          width: 'auto', // Adjusted width for responsiveness
+        }}
       >
-        <Grid container spacing={isMobile ? 0 : 3}>
+        <Grid container spacing={isMobile ? 2 : 3}>
           <Grid item xs={12}>
             <Typography variant="body1" component="div" gutterBottom>
               The president gets a daily morning briefing; why shouldn&apos;t
@@ -105,12 +110,20 @@ const Home: React.FC<AppProps> = ({ Component, pageProps }) => {
               every day.
             </Typography>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{ marginBottom: isMobile ? theme.spacing(2) : '0px' }}
+          >
             <Paper
-              style={{
+              sx={{
                 padding: theme.spacing(2),
                 backgroundColor: '#3a4047',
                 borderRadius: '8px',
+                // Adjust width and margin for your Grid items for responsiveness
+                width: '100%',
+                marginRight: theme.spacing(1),
               }}
             >
               <Typography variant="body2" component="p" gutterBottom>
@@ -119,12 +132,20 @@ const Home: React.FC<AppProps> = ({ Component, pageProps }) => {
               <UrlInput setUrls={setUrls} />
             </Paper>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            sx={{ marginBottom: isMobile ? theme.spacing(2) : '0px' }}
+          >
             <Paper
-              style={{
+              sx={{
                 padding: theme.spacing(2),
                 backgroundColor: '#3a4047',
                 borderRadius: '8px',
+                // Adjust width and margin for your Grid items for responsiveness
+                width: '100%',
+                marginRight: theme.spacing(1),
               }}
             >
               <Typography variant="body2" component="p" gutterBottom>

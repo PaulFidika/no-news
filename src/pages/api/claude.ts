@@ -32,13 +32,11 @@ async function handler(req: ExtendedNextApiRequest, res: NextApiResponse) {
       accept: 'application/json',
       body: JSON.stringify({
         prompt: `\n\nHuman: ${query}\n\nAssistant:`,
-        "max_tokens_to_sample": 600,
-        "temperature": 0.5,
-        "top_k": 250,
-        "top_p": 1,
-        "stop_sequences": [
-          "\\n\\nHuman:"
-        ],
+        max_tokens_to_sample: 600,
+        temperature: 0.5,
+        top_k: 250,
+        top_p: 1,
+        stop_sequences: ['\\n\\nHuman:'],
       }),
       contentType: 'application/json',
       modelId: 'anthropic.claude-instant-v1',

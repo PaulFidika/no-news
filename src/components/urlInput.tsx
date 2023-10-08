@@ -28,14 +28,16 @@ const UrlInput: React.FC<UrlInputProps> = ({ setUrls }) => {
   const handleAdd = () => {
     // Check if the URL is valid and total URLs are less than 5 before adding
     if (isValid && urls.length < 5) {
-      setInternalUrls((prev) => [...prev, newUrl]);
+      const updatedUrls = [...urls, newUrl];
+
+      setInternalUrls(updatedUrls);
       // Reset the new URL input after adding
       setNewUrl('');
       // Update the parent component's URLs state
-      setUrls(urls);
+      setUrls(updatedUrls);
     }
   };
-
+  
   // Handler for removing a URL from the list
   const handleRemove = (index: number) => {
     // Filter out the URL that needs to be removed

@@ -11,9 +11,7 @@ const Header: React.FC = () => (
       <IconButton edge="start" color="inherit" aria-label="menu">
         <Icon>your_icon_here</Icon>
       </IconButton>
-      <Typography variant="h6">
-        NoNews.ai
-      </Typography>
+      <Typography variant="h6">NoNews.ai</Typography>
     </Toolbar>
   </AppBar>
 );

@@ -12,7 +12,10 @@ const UrlInput: React.FC<UrlInputProps> = ({ setUrls }) => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setUrl(e.target.value);
-    setIsValid(e.target.value.startsWith('http://') || e.target.value.startsWith('https://'));
+    setIsValid(
+      e.target.value.startsWith('http://') ||
+        e.target.value.startsWith('https://'),
+    );
   };
 
   const handleAdd = () => {
@@ -21,8 +24,17 @@ const UrlInput: React.FC<UrlInputProps> = ({ setUrls }) => {
 
   return (
     <div>
-      <TextField label="URL" variant="outlined" value={url} onChange={handleChange} error={!isValid} helperText={!isValid && 'Please enter a valid URL'} />
-      <Button onClick={handleAdd} variant="contained" color="primary">Add URL</Button>
+      <TextField
+        label="URL"
+        variant="outlined"
+        value={url}
+        onChange={handleChange}
+        error={!isValid}
+        helperText={!isValid && 'Please enter a valid URL'}
+      />
+      <Button onClick={handleAdd} variant="contained" color="primary">
+        Add URL
+      </Button>
     </div>
   );
 };

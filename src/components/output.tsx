@@ -7,9 +7,7 @@ interface OutputWindowProps {
 }
 
 const OutputWindow: React.FC<OutputWindowProps> = ({ isLoading, output }) => (
-  <div>
-    {isLoading ? <CircularProgress /> : <p>{output}</p>}
-  </div>
+  <div>{isLoading ? <CircularProgress /> : <p>{output}</p>}</div>
 );
 
 export default OutputWindow;

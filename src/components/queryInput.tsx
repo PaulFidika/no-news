@@ -6,7 +6,11 @@ interface QueryInputProps {
 }
 
 const QueryInput: React.FC<QueryInputProps> = ({ setQuery }) => (
-  <TextField label="Query" variant="outlined" onChange={(e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)} />
+  <TextField
+    label="Query"
+    variant="outlined"
+    onChange={(e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
+  />
 );
 
 export default QueryInput;

@@ -30,32 +30,34 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <Container component="main">
+      <Container
+        component="main"
+        maxWidth={false}
+        style={{ width: '800px', margin: 'auto' }}
+      >
         <Grid container direction="column" alignItems="center" spacing={3}>
-          <Typography variant="h6" component="p" gutterBottom>
-            The president gets a daily morning briefing; why shouldn't you? Just
-            (1) specify news sources you want to keep an eye on, (2) specify
-            what's interesting to you, and (3) we'll summarize everything you
-            need to know concisely. We aim to provide concise, unbiased,
-            relevant information for you every day.
-          </Typography>
+          <Grid item xs={12}>
+            <Typography variant="h6" component="p" gutterBottom>
+              The president gets a daily morning briefing; why shouldn't you?
+              Just: - specify news sources you want to keep an eye on - specify
+              what's interesting to you, and (3) we'll summarize everything you
+              need to know concisely. We aim to provide concise, unbiased,
+              relevant information for you every day.
+            </Typography>
+          </Grid>
           <Grid item xs={12}>
             <Typography variant="h6" component="p" gutterBottom>
               What news sites do you want to pull from?
             </Typography>
-          </Grid>
-          <Grid item xs={12} md={6}>
             <UrlInput setUrls={setUrls} />
           </Grid>
           <Grid item xs={12}>
             <Typography variant="h6" component="p" gutterBottom>
               What's relevant to you personally?
             </Typography>
-          </Grid>
-          <Grid item xs={12} md={6}>
             <QueryInput setQuery={setQuery} />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12}>
             <Button
               onClick={handleSubmit}
               variant="contained"

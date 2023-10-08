@@ -12,6 +12,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { API_Routes } from './constants';
 
 const App: React.FC = () => {
   const [urls, setUrls] = useState<string[]>([]);
@@ -26,19 +27,28 @@ const App: React.FC = () => {
 
     // AWS API Gateway endpoint call
     try {
-      const response = await fetch(
-        'https://your-api-id.execute-api.your-region.amazonaws.com/your-stage/your-resource',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            urls,
-            query,
-          }),
-        },
-      );
+      const response = await fetch(API_Routes.CLAUDE, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          urls,
+          query,
+        }),
+      });
+
+      // const response = await fetch(
+      //   'https://your-api-id.execute-api.your-region.amazonaws.com/your-stage/your-resource',
+      //   {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json',
+      //     },
+      //     body: JSON.stringify({
+      //       urls,
+      //       query,
+      //     }),
+      //   },
+      // );
 
       const data = (await response.json()) as string;
       setOutput(data);

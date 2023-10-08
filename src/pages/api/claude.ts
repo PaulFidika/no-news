@@ -2,6 +2,13 @@ import { VercelRequest, VercelResponse } from '@vercel/node';
 import * as AWS from 'aws-sdk';
 import { InvokeModelRequest } from 'aws-sdk/clients/bedrockruntime';
 
+interface ExtendedNextApiRequest extends VercelRequest {
+  body: {
+    urls: string[];
+    query: string;
+  };
+}
+
 // Load the AWS credentials from Vercel environment variables
 AWS.config.update({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -11,13 +18,20 @@ AWS.config.update({
 
 const bedrock = new AWS.BedrockRuntime();
 
-async function handler(req: VercelRequest, res: VercelResponse) {
+async function handler(req: ExtendedNextApiRequest, res: VercelResponse) {
+  if (req.method !== 'POST') {
+    res.status(405).json({ errorMessage: 'Only POST requests are allowed.' });
+    return;
+  }
+
+  const { urls, query } = req.body;
+
   try {
     // Prepare the parameters for invoking the model
     const params: InvokeModelRequest = {
       accept: 'application/json',
       body: JSON.stringify({
-        prompt: 'Human: Tell me a funny joke about outer space!\n\nAssistant:',
+        prompt: `Human: ${query} \n\nAssistant:`,
         max_tokens_to_sample: 50,
       }),
       contentType: 'application/json',

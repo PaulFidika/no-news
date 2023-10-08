@@ -40,10 +40,16 @@ const App: React.FC = () => {
             <Typography variant="body1" component="p" gutterBottom>
               The president gets a daily morning briefing; why shouldn't you?
               Just:
-              <ul><li> specify news sources you want to keep an eye on </li> <li> specify
-              what's interesting to you </li> <li> And we'll summarize everything you
-              need to know concisely. </li> </ul> We aim to provide concise, unbiased,
-              relevant information for you every day.
+              <ul>
+                <li> specify news sources you want to keep an eye on </li>{' '}
+                <li> specify what's interesting to you </li>{' '}
+                <li>
+                  {' '}
+                  And we'll summarize everything you need to know concisely.{' '}
+                </li>{' '}
+              </ul>{' '}
+              We aim to provide concise, unbiased, relevant information for you
+              every day.
             </Typography>
           </Grid>
           <Grid item xs={12}>

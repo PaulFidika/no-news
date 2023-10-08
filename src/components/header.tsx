@@ -8,12 +8,12 @@ import Container from '@mui/material/Container';
 
 const Header: React.FC = () => (
   <AppBar position="static">
-      <Toolbar style={{ justifyContent: 'left' }}>
-        <IconButton edge="start" color="inherit" aria-label="menu">
-          <NewspaperIcon />
-        </IconButton>
-        <Typography variant="h6">NoNews.ai</Typography>
-      </Toolbar>
+    <Toolbar style={{ justifyContent: 'left' }}>
+      <IconButton edge="start" color="inherit" aria-label="menu">
+        <NewspaperIcon />
+      </IconButton>
+      <Typography variant="h6">NoNews.ai</Typography>
+    </Toolbar>
   </AppBar>
 );
 

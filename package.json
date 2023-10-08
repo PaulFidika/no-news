@@ -12,9 +12,10 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mozilla/readability": "^0.4.4",
     "@mui/icons-material": "^5.14.12",
     "@mui/material": "^5.14.12",
-    "@postlight/mercury-parser": "^2.2.1",
+    "@postlight/parser": "^2.2.3",
     "aws-sdk": "^2.1472.0",
     "axios": "^1.5.1",
     "cheerio": "^1.0.0-rc.12",
@@ -23,6 +24,7 @@
     "node-fetch": "^3.3.2",
     "react": "^18",
     "react-dom": "^18",
+    "react-markdown": "^9.0.0",
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {

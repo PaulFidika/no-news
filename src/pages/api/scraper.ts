@@ -38,9 +38,15 @@ const getArticles = async (urls: string[]): Promise<string> => {
       //   const $ = load(html);
       //   const articleText = $('your-article-body-selector').text();
 
-      const body = (await Mercury.parse(url)).content ?? '';
+      const response = await axios.get(url);
+      
+      // Load HTML into cheerio
+      const $ = load(response.data);
 
-      allText += body + ' ';
+      // Select article content
+      const articleText = $('article').text();
+
+      allText += articleText + ' ';
     } catch (error: unknown) {
       console.error(`Failed to fetch or extract text from ${url}:`, error);
     }

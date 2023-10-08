@@ -34,16 +34,18 @@ const App: React.FC = () => {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            key1: 'value1',
-            key2: 'value2',
+            urls,
+            query,
           }),
         },
       );
+
       const data = (await response.json()) as string;
       setOutput(data);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error(error);
     }
+
     setIsLoading(false);
   };
 

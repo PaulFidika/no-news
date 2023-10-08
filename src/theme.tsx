@@ -4,17 +4,17 @@ const theme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#90caf9',
+      main: '#009688', // Teal as the primary color
     },
     secondary: {
-      main: '#f48fb1',
+      main: '#ff6b6b', // Coral as the secondary color for contrast
     },
     background: {
-      default: '#333333',
-      paper: '#424242',
+      default: '#263238', // A deep, dark blue-gray for the main background
+      paper: '#37474f', // A slightly lighter blue-gray for paper elements
     },
     text: {
-      primary: '#d0d0d0',
+      primary: '#eceff1', // A soft, light gray for text to ensure readability against the dark background
     },
   },
   spacing: 4,

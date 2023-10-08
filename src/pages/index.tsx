@@ -28,7 +28,18 @@ const Home: React.FC<AppProps> = ({ Component, pageProps }) => {
 
     // AWS API Gateway endpoint call
     try {
-      const response = await fetch(API_Routes.CLAUDE, {
+      // const response = await fetch(API_Routes.CLAUDE, {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify({
+      //     urls,
+      //     query,
+      //   }),
+      // });
+
+      console.log('in client ', urls);
+
+      const response = await fetch(API_Routes.SCRAPER, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

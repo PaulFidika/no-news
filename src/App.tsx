@@ -10,6 +10,8 @@ import theme from './theme';
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import Paper from '@mui/material/Paper';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const App: React.FC = () => {
   const [urls, setUrls] = useState<string[]>([]);
@@ -17,12 +19,31 @@ const App: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [output, setOutput] = useState<string>('');
 
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const handleSubmit = async () => {
     setIsLoading(true);
-    // Do your API call here and setOutput
-    // const response = await fetch('your-api-endpoint', { method: 'POST', body: JSON.stringify({ urls, query }) });
-    // setOutput(await response.json());
-    setOutput('Your output will appear here.');
+
+    // AWS API Gateway endpoint call
+    try {
+      const response = await fetch(
+        'https://your-api-id.execute-api.your-region.amazonaws.com/your-stage/your-resource',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            key1: 'value1',
+            key2: 'value2',
+          }),
+        },
+      );
+      const data = (await response.json()) as string;
+      setOutput(data);
+    } catch (error) {
+      console.error(error);
+    }
     setIsLoading(false);
   };
 
@@ -35,42 +56,47 @@ const App: React.FC = () => {
         maxWidth={false}
         style={{ width: '800px', margin: 'auto' }}
       >
-        <Grid container direction="column" alignItems="center" spacing={3}>
+        <Grid container spacing={isMobile ? 0 : 3}>
           <Grid item xs={12}>
             <Typography variant="body1" component="p" gutterBottom>
-              The president gets a daily morning briefing; why shouldn't you?
-              Just:
-              <ul>
-                <li> specify news sources you want to keep an eye on </li>{' '}
-                <li> specify what's interesting to you </li>{' '}
-                <li>
-                  {' '}
-                  And we'll summarize everything you need to know concisely.{' '}
-                </li>{' '}
-              </ul>{' '}
-              We aim to provide concise, unbiased, relevant information for you
-              every day.
+              {/* Your introductory text here */}
             </Typography>
           </Grid>
-          <Grid item xs={12}>
-            <Typography variant="body2" component="p" gutterBottom>
-              What news sites do you want to pull from?
-            </Typography>
-            <UrlInput setUrls={setUrls} />
+          <Grid item xs={12} md={6}>
+            <Paper
+              style={{
+                padding: theme.spacing(2),
+                backgroundColor: '#5e4e5e',
+                borderRadius: '8px',
+              }}
+            >
+              <Typography variant="body2" component="p" gutterBottom>
+                What news sites do you want to pull from?
+              </Typography>
+              <UrlInput setUrls={setUrls} />
+            </Paper>
           </Grid>
-          <Grid item xs={12}>
-            <Typography variant="body2" component="p" gutterBottom>
-              What's relevant to you personally?
-            </Typography>
-            <QueryInput setQuery={setQuery} />
+          <Grid item xs={12} md={6}>
+            <Paper
+              style={{
+                padding: theme.spacing(2),
+                backgroundColor: '#5e4e5e',
+                borderRadius: '8px',
+              }}
+            >
+              <Typography variant="body2" component="p" gutterBottom>
+                What's relevant to you personally?
+              </Typography>
+              <QueryInput setQuery={setQuery} />
+            </Paper>
           </Grid>
           <Grid item xs={12}>
             <Button
               onClick={handleSubmit}
               variant="contained"
               color="primary"
-              fullWidth // This makes the button full width
-              style={{ marginTop: theme.spacing(2) }} // Adds some space above the button
+              fullWidth
+              style={{ marginTop: theme.spacing(2) }}
             >
               Submit Query
             </Button>

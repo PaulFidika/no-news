@@ -7,9 +7,12 @@ interface QueryInputProps {
 
 const QueryInput: React.FC<QueryInputProps> = ({ setQuery }) => (
   <TextField
+    id="outlined-textarea"
     label="Query"
-    variant="outlined"
-    onChange={(e: ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
+    placeholder="AI news and Meta Quest"
+    multiline
+    fullWidth
+    maxRows={7}
   />
 );
 

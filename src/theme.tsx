@@ -9,6 +9,13 @@ const theme = createTheme({
     secondary: {
       main: '#f48fb1',
     },
+    background: {
+      default: '#333333',
+      paper: '#424242',
+    },
+    text: {
+      primary: '#d0d0d0',
+    },
   },
   spacing: 4,
 });
